@@ -47,6 +47,8 @@ def show_all(contacts):
     
 
 def parse_input(user_input):
+    if not user_input.strip():
+        return None, []  
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, args
@@ -56,7 +58,12 @@ def main():
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
-        user_input = input("Enter a command: ")
+        user_input = input("Enter a command: ").strip()
+        
+        if not user_input:  
+            print("Please enter a command.")
+            continue
+
         command, args = parse_input(user_input)
 
         if command in ["close", "exit"]:
@@ -77,4 +84,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()  
